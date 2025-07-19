@@ -21,4 +21,5 @@ class NeuralNetwork:
         a1 = np.tanh(z1)
         z2 = np.dot(a1, self.w2) + self.b2
         output = np.tanh(z2)
+        
         return output
