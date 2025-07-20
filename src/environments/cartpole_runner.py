@@ -26,7 +26,7 @@ def evaluate_genome(genome, input_size, hidden_size, output_size, n_genome, gene
     env.close()
     
     if render and (total_reward > 499 or (total_reward > 100 and total_reward < 150)):
-        imageio.mimsave(f"assets/gifs/cartpole_{generation}.{n_genome}_{total_reward}.gif", frames, fps=45)
+        imageio.mimsave(f"assets/gifs/cartpole_{generation}.{n_genome}_{total_reward}.gif", frames, fps=45, loop=0)
         # print(f"Saved GIF to assets/cartpole_{generation}.{n_genome}_{total_reward}.gif")
 
     return total_reward
