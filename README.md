@@ -16,8 +16,6 @@ The training loop evaluates each neural network by running a full episode in the
 
 Below is an example of how performance typically improves over generations:
 
-**Insert image**
-
 <p align="center"> <img src="assets/figures/fitness-plot.png" width="500"/> </p>
 
 ## Results
