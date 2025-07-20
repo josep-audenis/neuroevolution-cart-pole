@@ -4,7 +4,7 @@ from evolution.genome import create_genome
 from environments.cartpole_runner import evaluate_genome
 
 class GeneticAlgorithm:
-    def __init__(self, input_size, hidden_size, output_size, population_size, mutation_rate):
+    def __init__(self, input_size, hidden_size, output_size, population_size, mutation_rate, render):
         self.input_size = input_size
         self.hidden_size = hidden_size
         self.output_size = output_size
@@ -12,6 +12,7 @@ class GeneticAlgorithm:
         self.mutation_rate = mutation_rate
         self.genome_length = self.input_size * self.hidden_size + self.hidden_size + self.hidden_size * self.output_size + self.output_size
         self.population = self.initialize_population()
+        self.render = render
 
     def initialize_population(self):
         return [create_genome(self.input_size, self.hidden_size, self.output_size) 
@@ -21,10 +22,10 @@ class GeneticAlgorithm:
         mutation = np.random.randn(len(genome)) * self.mutation_rate
         return genome + mutation
 
-    def evaluate_population(self):
+    def evaluate_population(self, generation):
         fitness_scores = []
-        for genome in self.population:
-            fitness = evaluate_genome(genome, self.input_size, self.hidden_size, self.output_size)
+        for i, genome in enumerate(self.population):
+            fitness = evaluate_genome(genome, self.input_size, self.hidden_size, self.output_size, i, generation, self.render)
             fitness_scores.append((genome, fitness))
 
         fitness_scores.sort(key=lambda x: x[1], reverse=True)

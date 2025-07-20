@@ -1,4 +1,10 @@
-NeuroEvolution/
+CartPole/
+*.gif
+*.png
+
+!fitness-plot.png
+!cartpole.gif
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
