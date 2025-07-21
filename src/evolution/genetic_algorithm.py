@@ -1,7 +1,7 @@
 import numpy as np
 import random
 from evolution.genome import create_genome
-from environments.cartpole_runner import evaluate_genome
+from environment.cartpole_runner import evaluate_genome
 
 class GeneticAlgorithm:
     def __init__(self, input_size, hidden_size, output_size, population_size, mutation_rate, render):
