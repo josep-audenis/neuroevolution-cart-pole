@@ -14,9 +14,9 @@ def main():
     hidden_size = 8
     output_size = 1
 
-    population_size = 10
-    mutation_rate = 0.01
-    generations =1000
+    population_size = 16
+    mutation_rate = 0.0065
+    generations = 1000
 
     render = True if arg.render else False
 
