@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import argparse
+import json
 
 from evolution.genetic_algorithm import GeneticAlgorithm
 
@@ -40,6 +41,13 @@ def main():
     
         ga.next_generation(sorted_population)
 
+    with open("assets/data/fitness_stats.json", "w") as f:
+        json.dump({
+            "best": best_fitness_history,
+            "avg": avg_fitness_history,
+            "worst": worst_fitness_history
+        }, f)
+
     plt.plot(best_fitness_history, label="Best Fitness")
     plt.plot(avg_fitness_history, label="Average Fitness")
     plt.plot(worst_fitness_history, label="Worst Fitness")
@@ -47,8 +55,11 @@ def main():
     plt.ylabel("Fitness")
     #plt.title("CartPole GA fitness")
     plt.legend(bbox_to_anchor=(0.99, 1.12), ncol=3)
+    
 
     plt.savefig("assets/figures/fitness_plot.png", dpi=300, bbox_inches="tight")
+    
+    
 
 if __name__ == "__main__":
     main()
