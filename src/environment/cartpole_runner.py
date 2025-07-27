@@ -4,6 +4,7 @@ import imageio.v2 as imageio
 from evolution.neural_network import NeuralNetwork
 
 def evaluate_genome(genome, input_size, hidden_size, output_size, n_genome, generation,render=False):
+    render = render and (generation == 0 or (generation + 1) % 100 == 0)
     env = gym.make("CartPole-v1", render_mode="rgb_array" if render else None)
     obs, _ = env.reset(seed=None)
     total_reward = 0
@@ -25,8 +26,8 @@ def evaluate_genome(genome, input_size, hidden_size, output_size, n_genome, gene
 
     env.close()
     
-    if render and (total_reward > 499 or (total_reward > 100 and total_reward < 150)):
-        imageio.mimsave(f"assets/gifs/cartpole_{generation}.{n_genome}_{total_reward}.gif", frames, fps=45, loop=0)
+    if render:
+        imageio.mimsave(f"assets/gifs/cartpole_{generation + 1}.{n_genome}_{total_reward}.gif", frames, fps=45, loop=0)
         # print(f"Saved GIF to assets/cartpole_{generation}.{n_genome}_{total_reward}.gif")
 
     return total_reward
